@@ -1,0 +1,15 @@
+---
+- 
+  hosts: all
+  user: 'root'
+  tasks:
+      - name: 'Test task 1'
+        shell: 'ls {{ targetdir }}' 
+        register: stdout_debug
+        #- name: 'Test task 1'
+        #shell: 'ls -R /tmp/'
+        #register: stdout_debug
+      - name: 'debug print'
+        debug: msg="{{stdout_debug.stdout}}"
+      - name: 'debug optional'
+        debug: msg="{{ optional }}"

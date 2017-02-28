@@ -1,0 +1,10 @@
+---
+-
+  hosts: all
+  tasks:
+      - file:
+          path: /opt/ansible_logs
+          state: directory
+      - copy:
+          src: "{{ logfile }}"
+          dest: "/opt/ansible_logs/{{ logfile | basename }}"
