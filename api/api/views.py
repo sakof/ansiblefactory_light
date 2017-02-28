@@ -11,5 +11,5 @@ class RunView(generics.GenericAPIView):
         playbook = request.data['playbook']
         playbook_exec_return = ansiblefactory.execute_playbook(playbook,host)
         logfile_path = ansiblefactory.log_results(playbook_exec_return['results'], host)
-        logfile_upload_return = ansiblefactory.execute_playbook('ansiblefactory/uploadlogs.yml', host)
+        logfile_upload_return = ansiblefactory.execute_playbook('ansiblefactory/uploadlogs.yml', host, logfile=logfile_path)
         return Response(playbook_exec_return,status=status.HTTP_200_OK)
