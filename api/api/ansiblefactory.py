@@ -18,8 +18,8 @@ import sys
 import time
 import os
 
-playbook_store_path = '/home/fokas/git/ansiblefactory_light/api/api/playbooks/'
-logdir='/tmp/'
+playbook_store_path = '/opt/ansiblefactory/playbooks/'
+logdir='/opt/ansiblefactory/logs/'
 
 
 def get_output(tasks_results,hostname):
@@ -81,8 +81,8 @@ def execute_playbook(playbook, host, *args, **kwargs):
     #Forcing our callback object into the executor
     executor._tqm._stdout_callback = "json" 
 
-    #can return different form of data, see cli/ansible.py
     results = executor.run()
+    pprint.pprint(results)
     report_tasks = executor._tqm._stdout_callback.results[0]['tasks']
     report = executor._tqm._stdout_callback.results
     report_stats = executor._tqm._stats.summarize(host)
